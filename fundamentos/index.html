@@ -1,45 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <style>
-        .galeria{
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 0 auto;
-            max-width: 90%;
-        }
-      
-        .galeria div{
-            text-align: center;
-        }
+      .galeria {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 90%;
+      }
 
+      .galeria div {
+        text-align: center;
+      }
     </style>
-</head>
-<body>
-   <h1 style="text-align: center;">Galería de imágenes</h1>
-   <div class="galeria">
-    <div class="">
-        <img src="imgs/paisaje1.jpg" alt="paisaje1" srcset="" width="300" height="200">
-       <p>pie de foto 1</p>
-    </div>
-    <div class="">
-        <img src="imgs/paisaje2.jpg" alt="paisaje2" srcset="" width="300" height="200">
-        <p>pie de foto 2</p>
-    </div>
-    <div class="">
-        <img src="imgs/paisaje3.jpg" alt="paisaje3" srcset="" width="300" height="200">
-        <p>pie de foto 3</p>
-    </div>
-    <div class="">
-        <img src="imgs/paisaje4.jpg" alt="paisaje4" srcset="" width="300" height="200">
-        <p>pie de foto 4</p>
+  </head>
+  <body>
+    <h1 style="text-align: center">Galería de imágenes</h1>
+
+    <div style="text-align: center; margin-bottom: 20px">
+      <input type="text" id="imagenURL" placeholder="URL de la imagen" />
+      <input type="text" id="pieFoto" placeholder="Pie de foto" />
+      <button onclick="agregaImagen()">Agregar Imagen</button>
     </div>
 
-   </div>
-</body>
+    <div class="galeria" id="galeriaImagenes">
+      <div class="">
+        <img
+          src="imgs/paisaje1.jpg"
+          alt="paisaje1"
+          srcset=""
+          width="300"
+          height="200"
+        />
+        <p>pie de foto 1</p>
+      </div>
+      <div class="">
+        <img
+          src="imgs/paisaje2.jpg"
+          alt="paisaje2"
+          srcset=""
+          width="300"
+          height="200"
+        />
+        <p>pie de foto 2</p>
+      </div>
+      <div class="">
+        <img
+          src="imgs/paisaje3.jpg"
+          alt="paisaje3"
+          srcset=""
+          width="300"
+          height="200"
+        />
+        <p>pie de foto 3</p>
+      </div>
+      <div class="">
+        <img
+          src="imgs/paisaje4.jpg"
+          alt="paisaje4"
+          srcset=""
+          width="300"
+          height="200"
+        />
+        <p>pie de foto 4</p>
+      </div>
+    </div>
+
+    <script>
+      function agregaImagen() {
+        var url = document.getElementById("imagenURL").value; //obtengo los valores del elemento
+
+        var pie = document.getElementById("pieFoto").value; //obtengo los valores del elemento
+
+        if (url && pie) {
+          var galeria = document.getElementById("galeriaImagenes");
+
+          var div = document.createElement("div"); // genero un elemento div
+
+          var imagen = document.createElement("img"); // genero un elemento img
+          imagen.src = url; // le añado lo obtenido
+
+          //le doy tamaño a la foto
+          imagen.width = 300;
+          imagen.height = 200;
+
+          var p = document.createElement("p"); // genero un elemento p
+          p.textContent = pie; // añado lo obtenido
+
+          // agrego los nuevos elementos al div nuevo
+          div.appendChild(imagen);
+          div.appendChild(p);
+
+          galeria.appendChild(div); // a la galeria le añado el div
+            //Reseteo los campos
+          document.getElementById("imagenURL").value="";
+          document.getElementById("pieFoto").value="";
+
+        }else{
+            alert("Por favor introduce imagen y pie")
+        }
+      }
+    </script>
+  </body>
 </html>
