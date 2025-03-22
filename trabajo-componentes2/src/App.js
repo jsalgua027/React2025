@@ -20,10 +20,12 @@ const usuario={
 }
 //esto es un componente que por props recibe un objeto
 function Saludo(props){
+  const{nombre,apellido,edad,genero,peso}=props.user; {/*desestructurar el objeto para simplificar las sintaxis de la lógica*/}
   return(
   <div>
-     <h1>Hola {props.user.nombre} {props.user.apellido}</h1>
-     <h2>tienes: {props.user.edad} años,  siendo de genero: {props.user.genero} </h2>
+    {props.user.nombre && apellido ? (<div><h1>Hola {props.user.nombre} {props.user.apellido}</h1><h2>tienes: {props.user.edad} años,  siendo de genero: {props.user.genero} </h2></div>):
+    (<h1>No se ha proporcionado el nombre de usuario</h1>)} {/*si existe la propiedad nombre*/}
+   
   </div>
   );
 }
